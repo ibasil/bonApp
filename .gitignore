@@ -1,0 +1,6 @@
+#My .gitignore file, xoxo
+
+*.iml
+.idea/
+sql/
+target/
