@@ -1,22 +1,28 @@
 package app.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import java.sql.Date;
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 public class Order implements IEntity{
     public enum Status { NOT_READY, READY_FOR_SHIPMENT, DELIVERING, DELIVERED }
     @Id
     private Integer id;
+    @OneToMany(mappedBy="order")
+    private List<OrderDish> orderDish;
     private Double OrderSum;
-    private Date timeTaken;
+    private java.sql.Timestamp timeTaken;
     @Enumerated(EnumType.STRING)
     private Status status = Status.NOT_READY;
 
     public Order() {}
+
+    public Order(Double orderSum, Status status, Timestamp timeTaken) {
+        OrderSum = orderSum;
+        this.status = status;
+        this.timeTaken = timeTaken;
+    }
 
     public Integer getId() {
         return id;
@@ -24,6 +30,14 @@ public class Order implements IEntity{
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public List<OrderDish> getOrderDish() {
+        return orderDish;
+    }
+
+    public void setOrderDish(List<OrderDish> orderDish) {
+        this.orderDish = orderDish;
     }
 
     public Double getOrderSum() {
@@ -42,11 +56,11 @@ public class Order implements IEntity{
         this.status = status;
     }
 
-    public Date getTimeTaken() {
+    public java.sql.Timestamp getTimeTaken() {
         return timeTaken;
     }
 
-    public void setTimeTaken(Date timeTaken) {
+    public void setTimeTaken(java.sql.Timestamp timeTaken) {
         this.timeTaken = timeTaken;
     }
 

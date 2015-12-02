@@ -6,7 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Employee {
+public class Employee implements IEntity {
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer eid;
@@ -14,16 +15,16 @@ public class Employee {
     private String email;
     private String password;
     private String role;
-    private String status;
+    private boolean active = true;
 
     public Employee() {}
 
-    Employee(String fullName, String email, String password, String role, String status) {
+    Employee(String fullName, String email, String password, String role, boolean active) {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.role = role;
-        this.status = status;
+        this.active = active;
     }
 
     public Integer getEid() {
@@ -66,12 +67,12 @@ public class Employee {
         this.role = role;
     }
 
-    public String getStatus() {
-        return status;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override
@@ -79,7 +80,7 @@ public class Employee {
         return "Employee{" +
                 "email='" + email + '\'' +
                 ", role='" + role + '\'' +
-                ", status='" + status + '\'' +
+                ", status='" + active + '\'' +
                 '}';
     }
 }

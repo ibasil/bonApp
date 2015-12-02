@@ -12,13 +12,23 @@ public class Dish implements IEntity {
     @JoinColumn(name="catid")
     private Category category;
     private String title;
-    private String made;
+    private boolean kitchenMade;
     private Double price;
     private java.sql.Timestamp dateAdded;
     private String description;
-    private String status;
+    private boolean active = true;
 
     public Dish() {}
+
+    public Dish(boolean active, Category category, Timestamp dateAdded, String description, boolean kitchenMade, Double price, String title) {
+        this.active = active;
+        this.category = category;
+        this.dateAdded = dateAdded;
+        this.description = description;
+        this.kitchenMade = kitchenMade;
+        this.price = price;
+        this.title = title;
+    }
 
     public Category getCategory() {
         return category;
@@ -52,12 +62,12 @@ public class Dish implements IEntity {
         this.did = did;
     }
 
-    public String getMade() {
-        return made;
+    public boolean isKitchenMade() {
+        return kitchenMade;
     }
 
-    public void setMade(String made) {
-        this.made = made;
+    public void setKitchenMade(boolean kitchenMade) {
+        this.kitchenMade = kitchenMade;
     }
 
     public Double getPrice() {
@@ -68,12 +78,12 @@ public class Dish implements IEntity {
         this.price = price;
     }
 
-    public String getStatus() {
-        return status;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getTitle() {
