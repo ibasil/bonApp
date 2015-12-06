@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title><ui:insert name="title">Add employee</ui:insert></title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/templatee.xhtml">
+		<ui:define name="content">
+
+			<b:panel look="warning">
+				<b:alert severity="warning"><strong>Warning!</strong> Fill in the fields carefully </b:alert>
+				<hr/>
+				<h:form>
+					<h:panelGrid columns="3" class="cntr">
+						<h:outputText value="Title: *"></h:outputText>
+						<b:inputText id="title" value="#{adminBean.dish.title}"
+							placeholder="Name of the dish" required="true" requiredMessage="#{msg.nameRequired}">
+							<f:validateLength minimum="4" maximum="60" />
+						</b:inputText>
+						<h:message for="title" style="color:red" />
+
+						<h:outputText value="Category *"></h:outputText>
+						<b:selectOneMenu value="#{adminBean.dish.category}" id="category"
+							required="true">
+							<f:selectItem itemLabel="(Please select)" itemValue="" />
+							<f:selectItem itemLabel="Appetizer" itemValue="appetizer" />
+							<f:selectItem itemLabel="Beverage" itemValue="beverage" />
+							<f:selectItem itemLabel="Dessert" itemValue="dessert" />
+							<f:selectItem itemLabel="Entree" itemValue="entree" />
+							<f:selectItem itemLabel="Salad" itemValue="salad" />
+							<f:selectItem itemLabel="Specialty" itemValue="specialty" />
+						</b:selectOneMenu>
+						<h:message for="category" style="color:red" />
+
+						<b:label text="Type" severity="primary" />
+						<b:selectOneMenu value="#{adminBean.dish.made}" id="type"
+							required="true">
+							<f:selectItem itemLabel="NON-KITCHEN-MADE" itemValue="N" />
+							<f:selectItem itemLabel="KITCHEN-MADE" itemValue="Y" />
+						</b:selectOneMenu>
+						<h:message for="type" style="color:red" />
+
+						<h:outputText value="Price *"></h:outputText>
+						<b:inputText id="price" value="#{adminBean.dish.price}"
+							placeholder="0.10 - 5000" required="true"
+				requiredMessage="#{msg.priceRequired}" validatorMessage="#{msg.minSumRange}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="dollar" />
+							</f:facet>
+							<f:convertNumber minFractionDigits="2" />
+							<f:validateDoubleRange minimum="0.10" maximum="5000.00" />
+							
+						</b:inputText>
+						<h:message for="price" style="color:red" />
+
+						<h:outputText value="Description *"></h:outputText>
+						<b:inputText id="desc" value="#{adminBean.dish.description}"
+							placeholder="Full description of the dish" required="true">
+							<f:validateLength minimum="5" maximum="200" />
+						</b:inputText>
+						<h:message for="desc" style="color:red" />
+						
+						<b:label text="Status" severity="success" />
+						<b:selectOneMenu value="#{adminBean.dish.status}" id="status"
+							required="true">
+							<f:selectItem itemLabel="Active" itemValue="A" />
+							<f:selectItem itemLabel="Blocked" itemValue="B" />
+						</b:selectOneMenu>
+						<h:message for="status" style="color:red" />
+						
+						<br/>
+						<br/>
+						<br/>
+						<b:commandButton value="Save" action="#{adminBean.save()}" />
+
+					</h:panelGrid>
+				</h:form>
+
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<p class="cntr"><h:link value="Home" outcome="admin"/></p>
+
+			</b:panel>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>

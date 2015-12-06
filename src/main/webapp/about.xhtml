@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+    <ui:composition template="/WEB-INF/templates/template.xhtml">
+        <ui:define name="content">
+            <b:container>
+                <b:iconAwesome name="quote-left"/>Who in the world am I? Ah, that's the great puzzle.<b:iconAwesome name="quote-right"/><br/>
+                <i>Lewis Carroll, Alice in Wonderland</i>
+
+                <h2>About BonAppetit restraunt system</h2>
+
+                <p>
+             Well, there are two sides. One if you're a <b:label text="Customer" severity="success" /> and want to buy something to eat.<br/><br/>
+                    You just have to do three (3) simple steps: <br/><br/>
+                    <b:label text="1" severity="danger"/> fill in your info(needed for delivery guy)<br/>
+                    <b:label text="2" severity="warning"/> choose from
+                    the menu everything you want<br/>
+                    <b:label text="3" severity="success"/> submit your order in a basket <br/>
+                    <hr/>
+
+                    <strong>The other side</strong> is if you work in system, so you're <b:badge value="Employee"/> and have your role and duties.
+                    <br/><br/>Six (6) roles such as: <b:label text="Administrator" severity="info"/>, <b:label text="Analyst" severity="warning"/>, <b:label text="Cook" severity="primary"/>, <b:label text="Delivery manager"/> and finally <b:label text="Security officer" severity="danger"/>. <br/>
+                        <br/>
+                    As <b:label text="Administrator" severity="info"/> you can view, add and edit dishes a in the database.<br/>
+                    As <b:label text="Analyst" severity="warning"/> you can form reports and that's all for you.<br/>
+                    As <b:label text="Cook" severity="primary"/> role you have access to current orders and you have to set current prepare state accordinly
+                    to your work priorities.<br/>
+                    As <b:label text="Delivery manager"/> you're responsible for delivery, god of loggistics.<br/>
+                    As <b:label text="Security officer" severity="danger"/> you can edit, view all and add new employees. You definetly have power.<br/>
+                    <br/>
+                    So that's the rules and now it's time to make your choice!
+                </p>
+
+                    <br/>
+                    <br/>
+
+            </b:container>
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title><ui:insert name="title">Add employee</ui:insert></title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/templates/templatee.xhtml">
+		<ui:define name="content">
+			<b:panel look="warning">
+				<h3 align="center"><b:iconAwesome name="user-plus" size = "2x"/> Add new employee to the system</h3>
+				<hr/>
+				<h:form>
+					<h:panelGrid columns="3" class="cntr">
+						<h:outputText value="Full Name: *"></h:outputText>
+						<b:inputText id="fullName"
+							value="#{suBean.employee.fullName}"
+							placeholder="Eight Symbols " required="true" requiredMessage="#{msg.nameRequired}">
+							<f:validateLength minimum="8" maximum="100" />
+						</b:inputText>
+						<h:message for="fullName" style="color:red" />
+
+						<h:outputText value="Role *"></h:outputText>
+						<b:selectOneMenu value="#{suBean.employee.role}" id="role"
+							required="true">
+							<f:selectItem itemLabel="(Please select)" itemValue="" />
+							<f:selectItem itemLabel="Admin" itemValue="admin" />
+							<f:selectItem itemLabel="Analyst" itemValue="analyst" />
+							<f:selectItem itemLabel="Cook" itemValue="cook" />
+							<f:selectItem itemLabel="Delivery manager" itemValue="manager" />
+							<f:selectItem itemLabel="Super User" itemValue="root" />
+						</b:selectOneMenu>
+						<h:message for="role" style="color:red" />
+
+						<h:outputText value="Phone *"></h:outputText>
+						<b:inputText id="mobile" value="#{suBean.employee.mobile}"
+							placeholder="044-123" required="true" requiredMessage="#{msg.phoneRequired}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="phone-square" />
+							</f:facet>
+							<f:validateLength minimum="6" maximum="20" />
+						</b:inputText>
+						<h:message for="mobile" style="color:red" />
+
+						<h:outputText value="Address *"></h:outputText>
+						<b:inputText id="address" value="#{suBean.employee.address}"
+							placeholder="Home str. 17, apt. #1" required="true" requiredMessage="#{msg.addressRequired}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="home" />
+							</f:facet>
+							<f:validateLength minimum="10" maximum="60" />
+						</b:inputText>
+						<h:message for="address" style="color:red" />
+
+						<h:outputText value="Email *"></h:outputText>
+						<b:inputText id="email" value="#{suBean.employee.email}"
+							placeholder="validUser@example.com" required="true" requiredMessage="#{msg.emailRequired}" validatorMessage="#{msg.emailFormat}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="user" />
+							</f:facet>
+							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							<f:validateLength minimum="6" maximum="70" />
+						</b:inputText>
+						<h:message for="email" style="color:red" />
+
+						<h:outputText value="Password: *"></h:outputText>
+						<b:inputSecret id="password"
+							value="#{suBean.employee.password}" required="true" requiredMessage="#{msg.passwordRequired}" >
+							<f:facet name="prepend">
+								<b:iconAwesome name="key" />
+							</f:facet>
+							<f:validateLength minimum="5" maximum="80" />
+						</b:inputSecret>
+						<h:message for="password" style="color:red" />
+
+						<b:label text="Status" severity="success" />
+
+						<b:selectOneMenu value="#{suBean.employee.status}"
+							id="status" required="true">
+							<f:selectItem itemLabel="Active" itemValue="A" />
+							<f:selectItem itemLabel="Blocked" itemValue="B" />
+						</b:selectOneMenu>
+						<h:message for="status" style="color:red" />
+						<br/>
+						<b:commandButton value="Save"
+							action="#{suBean.save()}" />
+							
+					</h:panelGrid>
+				</h:form>
+
+				<br/>
+				<br/>
+				<br/>
+				<p class="cntr"><h:link value="Home" outcome="su"/></p>
+			</b:panel>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

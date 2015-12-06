@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+   <h:head>
+        <title>Sign In Template for BootsFaces</title>
+        <meta name="author" content="vsh"></meta>
+        <style type="text/css">
+            .form-signin {
+                margin: 0 auto;
+                max-width: 400px;
+                padding: 15px;
+            }
+        </style>
+       <h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+<h:body>
+
+        <b:container>
+            <b:navBar brand="BonAppetit" inverse="true" fixed="top">
+                <b:navbarLinks>
+                </b:navbarLinks>
+            </b:navBar>
+        </b:container>
+
+   			  <b:container id = "Mycontainer" >
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+
+            <h:form styleClass="form-signin" prependId="false">
+                <h2 class="form-signin-heading">Staff sign in</h2>
+                <b:inputText id="email" placeholder="Email address" value="#{loginBean.email}" required="true" >
+                    <f:facet name="prepend">
+                        <b:icon name="user" />
+                    </f:facet>
+                </b:inputText>
+
+                <b:inputText id="password" placeholder="Password" type="password" value="#{loginBean.password}" required="true">
+                     <f:facet name="prepend">
+                        <b:iconAwesome name="key" />
+                    </f:facet>
+                </b:inputText>
+
+                <b:selectBooleanCheckbox value="true" caption="remember me"/>
+                <b:commandButton look="primary btn-block" value="Sign In" icon="log-in" size="md" action="#{loginBean.auth(loginBean.email, loginBean.password)}"/>
+            </h:form>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </b:container>
+
+
+
+    <div id="footer">
+            Copyright <h:link value="Bon Appetit&#8482;" outcome="about"></h:link>  2015. All rights Reserved.
+
+    </div>
+</h:body>
+</html>

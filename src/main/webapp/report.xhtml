@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title><ui:insert name="title">Sales report page</ui:insert></title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+
+    <ui:composition template="/WEB-INF/templates/templatee.xhtml">
+                <ui:define name="content">
+            <b:panel look="warning">
+                 <h3><b>Report:</b> quantity of orders and total sales sum during given time period</h3>
+                <hr/> #{SuBean.refresh()}
+
+
+                <h:form>
+
+                    <h:dataTable value="#{SuBean.report}" var="report"
+                                 styleClass="order-table" headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row" class="cntr">
+
+                        <h:column>
+                            <f:facet name="header">Quantity</f:facet>
+                            #{report.count}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Total, <b:iconAwesome name="dollar" /></f:facet>
+                            #{report.sum}
+                        </h:column>
+
+
+                    </h:dataTable>
+                </h:form>
+                <br/>
+                <br/>
+                <p class="cntr"><h:link value="Home" outcome="analyst" /></p>
+
+            </b:panel>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>

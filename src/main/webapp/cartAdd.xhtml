@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title><ui:insert name="title">Menu page</ui:insert></title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<h:body>
+
+    <ui:composition template="/WEB-INF/templates/template.xhtml">
+
+        <ui:define name="content">
+            <b:container>
+            <b:row>
+                <b:column col-xs="10">
+                    <b:badge value="Scheme of checkout:" />
+                    <b:label text="1" severity="danger"/>
+                    <b:label text="2" severity="warning"/>
+                    <b:label text="3" severity="success"/>
+                </b:column>
+                <b:column col-xs="2">
+                    <h:form>
+                        <b:iconAwesome name="shopping-cart" size="2x"/> <span> </span>
+                        <h:commandLink action="#{cartBean.show()}" value="#{cartBean.calcTotal()}"/>
+                    </h:form>
+                </b:column>
+            </b:row>
+            </b:container>
+            <b:container>
+                <h3 align="center">Make your order with joy</h3>
+                <hr/>
+                #{cartBean.refresh()}
+
+
+
+                <h:form>
+                    <h:dataTable value="#{cartBean.menu}" var="menu"
+                                 styleClass="order-table" headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row" class="cntr">
+
+                        <h:column>
+                            <f:facet name="header">Category</f:facet>
+                            #{menu.category}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Title</f:facet>
+                            #{menu.title}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header"><b:iconAwesome name="dollar" size="2x"/></f:facet>
+                            #{menu.price}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header"><b:iconAwesome name="cart-arrow-down" size="2x"/></f:facet>
+                            <h:commandLink action="#{cartBean.saveCart(menu)}"
+                                           value="Add"/>
+                        </h:column>
+
+                    </h:dataTable>
+
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <div align="center">
+
+                        <b:button icon="chevron-left" iconAlign="left" value="Back" outcome="index" /> <span>  </span>
+                        <b:commandButton icon="chevron-right" iconAlign="right" value="Next" action="#{customerBean.show}" />
+                    </div>
+
+                </h:form>
+
+
+                <br/>
+                <br/>
+
+                <div align="center">
+                <b:row>
+                    <b:column span="2" offset="5"><b:label text="2" severity="warning"/></b:column>
+                </b:row>
+                </div>
+                <br/>
+                <br/>
+            </b:container>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>

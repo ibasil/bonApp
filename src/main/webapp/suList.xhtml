@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title><ui:insert name="title">List of employees</ui:insert></title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+
+	<ui:composition template="/WEB-INF/templates/templatee.xhtml">
+
+		<ui:define name="content">
+			<b:panel look="warning">
+				<h3 align="center">Registered staff list</h3>
+				<hr/>
+    #{suBean.refresh()}
+    <h:form>
+
+					<h:dataTable value="#{suBean.staff}" var="officer"
+						styleClass="order-table" headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row" class="cntr">
+
+						<h:column>
+							<f:facet name="header">Name</f:facet> 
+				#{officer.fullName} 
+			</h:column>
+						<h:column>
+							<f:facet name="header"><b:iconAwesome name="user" size = "2x"/></f:facet>
+				#{officer.role} 
+			</h:column>
+						<h:column>
+							<f:facet name="header">Login</f:facet>
+				#{officer.email} 
+			</h:column>
+						<h:column>
+							<f:facet name="header"><b:iconAwesome name="phone-square" size = "2x"/></f:facet>
+				#{officer.mobile} 
+			</h:column>
+						<h:column>
+							<f:facet name="header"><b:iconAwesome name="eye-slash" size = "2x"/></f:facet>
+				#{officer.status} 
+						</h:column>
+						<h:column>
+							<f:facet name="header"><b:iconAwesome name="edit" size = "2x"/></f:facet>
+							<h:commandLink action="#{suBean.update(officer)}"
+								value="Edit" />
+						</h:column>
+						<h:column>
+							<f:facet name="header"><b:iconAwesome name="ban" size = "2x"/></f:facet>
+							<h:commandLink action="#{suBean.disable(officer)}"
+								value="Block" />
+						</h:column>
+					</h:dataTable>
+				</h:form>
+
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<p class="cntr"><h:link value="Home" outcome="su"/></p>
+			</b:panel>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

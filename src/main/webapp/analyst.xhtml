@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title><ui:insert name="title">Analyst start page</ui:insert></title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+
+    <ui:composition template="/WEB-INF/templates/templatee.xhtml">
+
+        <ui:define name="content">
+            <b:panel look="warning">
+                <b:alert severity="success">Welcome, <b:badge value="#{loginBean.employee.email}" />!  <br/>
+                You've logged in as <b>analyst</b>.</b:alert>
+                <hr/>
+
+                <h:form>
+                <h:panelGrid columns="3" >
+
+                <h:outputText value="Start date*"></h:outputText>
+                <b:inputText id="start" value="#{analystBean.start}" required="true" placeholder="01.04.2015">
+                    <f:convertDateTime pattern="dd.MM.yyyy" />
+                </b:inputText>
+                <h:message for="start" style="color:red" />
+
+                <h:outputText value="End date*"></h:outputText>
+                <b:inputText id="end" value="#{analystBean.end}" required="true" placeholder="31.04.2015">
+                    <f:convertDateTime pattern="dd.MM.yyyy" />
+                </b:inputText>
+                <h:message for="end" style="color:red" />
+                </h:panelGrid>
+
+                <br/>
+
+                <h:commandLink action="#{analystBean.redirect()}" value="Form sales report"/><br/>
+                <h:commandLink action="#{analystBean.redirectCategory()}" value="Form sales report by menu categories"/>
+                </h:form>
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </b:panel>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>

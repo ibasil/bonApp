@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title><ui:insert name="title">Admin page</ui:insert></title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+
+    <ui:composition template="/WEB-INF/templates/templatee.xhtml">
+
+        <ui:define name="content">
+            <b:panel look="warning">
+                <h3 align="center">List of kitchen-made dishes</h3>
+                <hr/>
+                #{adminBean.refreshKitchen()}
+
+                <h:form>
+
+                    <h:dataTable value="#{adminBean.kitchen}" var="kitchen"
+                                 styleClass="order-table" headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row" class="cntr">
+
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            #{kitchen.did}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Title</f:facet>
+                            #{kitchen.title}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header"><b:iconAwesome name="cutlery" /></f:facet>
+                            #{kitchen.made}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header"><b:iconAwesome name="dollar" /></f:facet>
+                            #{kitchen.price}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Category</f:facet>
+                            #{kitchen.category}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><b:iconAwesome name="eye-slash" size = "2x"/></f:facet>
+                            #{kitchen.status}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Prepared</f:facet>
+                            #{kitchen.made}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">DateAdded</f:facet>
+                            #{kitchen.dateAdded}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><b:iconAwesome name="info-circle" size = "2x"/></f:facet>
+                            #{kitchen.description}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header"><b:iconAwesome name="edit" size="2x" /></f:facet>
+                            <h:commandLink action="#{adminBean.update(kitchen)}"
+                                           value="Edit" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><b:iconAwesome name="ban" size = "2x"/></f:facet>
+                            <h:commandLink action="#{adminBean.disable(kitchen)}"
+                                           value="Block" />
+                        </h:column>
+
+                    </h:dataTable>
+                </h:form>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <p class="cntr"><h:link value="Home" outcome="admin" /></p>
+            </b:panel>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>

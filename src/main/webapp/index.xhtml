@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+    <ui:composition template="/WEB-INF/templates/template.xhtml">
+        <ui:define name="content">
+            <b:container>
+                <b:row>
+                    <b:column span="11">
+                        <b:badge value="Scheme of checkout:"/>
+                        <b:label text="1" severity="danger"/>
+                        <b:label text="2" severity="warning"/>
+                        <b:label text="3" severity="success"/>
+                    </b:column>
+                </b:row>
+
+
+                <h3 align="center">Enter your data</h3>
+                <hr/>
+                <br/>
+
+                <h:form>
+
+                    <h:panelGrid columns="3" style="margin: 0 auto">
+                        <h:outputText value="Full Name *"> </h:outputText>
+
+                        <b:inputText id="fullName"
+                                     value="#{customerBean.customer.fullName}"
+                                     placeholder="Average Joe" required="true">
+                            <f:facet name="prepend">
+                                <b:icon name="hand-right"/>
+                            </f:facet>
+                            <f:validateLength minimum="3" maximum="60"/>
+                        </b:inputText>
+                        <h:message for="fullName" style="color:red"/>
+
+                        <h:outputText value="Phone *"></h:outputText>
+                        <b:inputText id="mobile"
+                                     value="#{customerBean.customer.mobile}"
+                                     placeholder="XXX-123-4567" required="true">
+                            <f:facet name="prepend">
+                                <b:iconAwesome name="phone-square"/>
+                            </f:facet>
+                            <f:validateLength minimum="3" maximum="60"/>
+                        </b:inputText>
+                        <h:message for="mobile" style="color:red"/>
+
+                        <h:outputText value="Address *"></h:outputText>
+                        <b:inputText id="address"
+                                     value="#{customerBean.customer.address}"
+                                     placeholder="Green str. 1, apt. 1" required="true">
+                            <f:facet name="prepend">
+                                <b:iconAwesome name="home"/>
+                            </f:facet>
+                            <f:validateLength minimum="3" maximum="60"/>
+                        </b:inputText>
+                        <h:message for="address" style="color:red"/>
+
+                    </h:panelGrid>
+
+
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <div align="center">
+                        <b:commandButton action="#{customerBean.save}" value="Next" icon="chevron-right"
+                                         iconAlign="right"/>
+                    </div>
+                </h:form>
+
+                <br/>
+                <br/>
+
+                <div align="center">
+                    <b:row>
+                        <b:column span="2" offset="5"><b:label text="1" severity="danger"/></b:column>
+                    </b:row>
+                </div>
+
+                <hr/>
+
+            </b:container>
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+</html>
