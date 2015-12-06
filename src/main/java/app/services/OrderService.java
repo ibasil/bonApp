@@ -9,6 +9,6 @@ public interface OrderService {
     void update(Order order);
     void setNextStatus(Order order);
 
-    List<Order> findAllReady();
+    List<Order> getAllReady();
 
 }

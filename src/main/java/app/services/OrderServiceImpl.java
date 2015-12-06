@@ -10,12 +10,12 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named
-public class OrderServiceImpl implements IOrderService, Serializable {
+public class OrderServiceImpl implements OrderService, Serializable {
 
     @Inject
     private IOrderDao orderDao;
 
-    public List<Order> findAllReady() {
+    public List<Order> getAllReady() {
         return orderDao.findAllReady();
     }
 

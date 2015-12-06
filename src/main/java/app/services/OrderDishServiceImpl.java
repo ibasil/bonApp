@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @Named
-public class OrderDishServiceImpl implements IOrderDishService, Serializable {
+public class OrderDishServiceImpl implements OrderDishService, Serializable {
 
     @Inject
     private IOrderDishDao orderDishDao;

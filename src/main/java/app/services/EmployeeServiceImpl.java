@@ -10,13 +10,13 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named
-public class EmployeeServiceImpl implements IEmployeeService, Serializable {
+public class EmployeeServiceImpl implements EmployeeService, Serializable {
 
     @Inject
     private IEmployeeDao employeeDao;
 
     public Employee findUser(String email, String password) {
-        Employee e = employeeDao.findUser(email, Crypt.crypt(password));
+        Employee e = employeeDao.login(email, Crypt.crypt(password));
 
         if (e != null) {
             e.setPassword(Crypt.crypt(e.getPassword()));
@@ -24,7 +24,7 @@ public class EmployeeServiceImpl implements IEmployeeService, Serializable {
         return e;
     }
 
-    public List<Employee> findAllActive() {
+    public List<Employee> getAllActive() {
         List<Employee> users = employeeDao.findAllActive();
 
         if (users != null) {
@@ -54,7 +54,12 @@ public class EmployeeServiceImpl implements IEmployeeService, Serializable {
         }
     }
 
-    public List<Employee> findAll() {
+    @Override
+    public void disable(Employee e) {
+        e.setActive(false);
+    }
+
+    public List<Employee> getAll() {
         List<Employee> users = employeeDao.findAll();
         if (users != null) {
             for (Employee e : users) {
@@ -62,5 +67,10 @@ public class EmployeeServiceImpl implements IEmployeeService, Serializable {
             }
         }
         return users;
+    }
+
+    @Override
+    public Employee login(String login, String password) {
+        return employeeDao.login(login, password);
     }
 }

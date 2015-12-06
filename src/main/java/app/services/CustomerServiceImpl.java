@@ -8,7 +8,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 
 @Named
-public class CustomerServiceImpl implements ICustomerService, Serializable {
+public class CustomerServiceImpl implements CustomerService, Serializable {
 
     @Inject
     private ICustomerDao customerDao;

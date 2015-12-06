@@ -12,12 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Named
-public class CategoryServiceImpl implements ICategoryService, Serializable {
+public class CategoryServiceImpl implements CategoryService, Serializable {
 
     @Inject
     private ICategoryDao categoryDao;
 
-    public List<Category> findAllActive() {
+    public List<Category> getAllActive() {
         return categoryDao.findAllActive();
     }
 
@@ -41,7 +41,7 @@ public class CategoryServiceImpl implements ICategoryService, Serializable {
         return categoryDao.findById(id);
     }
 
-    public List<Category> findAll() {
+    public List<Category> getAll() {
         return categoryDao.findAll();
     }
 }

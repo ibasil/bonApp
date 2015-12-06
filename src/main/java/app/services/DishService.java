@@ -11,9 +11,10 @@ public interface DishService {
     void update(Dish dish);
     Dish findById(Long id);
 
-    List<Dish> findAll();
-    List<Dish> findAllActive();
-    List<Dish> findAllActive(Long categoryID);
+    List<Dish> getAll();
+    List<Dish> getAllActive();
+    List<Dish> getAllActive(Long categoryID);
     List<ResultDS> getDishStatusList(Long orderId);
 
+    void disable(Dish dish);
 }

@@ -7,8 +7,12 @@ public interface EmployeeService {
 
     void create(Employee e);
     void update(Employee e);
+    void disable(Employee e);
 
     Employee findUser(String email, String password);
-    List<Employee> findAllActive();
-    List<Employee> findAll();
+    List<Employee> getAllActive();
+    List<Employee> getAll();
+
+
+    Employee login(String login, String password);
 }

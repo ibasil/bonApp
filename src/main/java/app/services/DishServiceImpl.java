@@ -12,7 +12,7 @@ import app.dao.ResultDS;
 import app.entities.Dish;
 
 @Named
-public class DishServiceImpl implements IDishService, Serializable {
+public class DishServiceImpl implements DishService, Serializable {
 
     @Inject
     private IDishDao dishDao;
@@ -31,11 +31,11 @@ public class DishServiceImpl implements IDishService, Serializable {
         return dishDao.findById(id);
     }
 
-    public List<Dish> findAll() {
+    public List<Dish> getAll() {
         return dishDao.findAll();
     }
 
-    public List<Dish> findAllActive(Long categoryID) {
+    public List<Dish> getAllActive(Long categoryID) {
         return dishDao.findAllActive(categoryID);
     }
 
@@ -43,7 +43,12 @@ public class DishServiceImpl implements IDishService, Serializable {
         return dishDao.getDishStatusList(orderId);
     }
 
-    public List<Dish> findAllActive() {
+    @Override
+    public void disable(Dish dish) {
+        dish.setActive(false);
+    }
+
+    public List<Dish> getAllActive() {
         return dishDao.findAllActive();
     }
 }
