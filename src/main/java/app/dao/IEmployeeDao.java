@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface IEmployeeDao extends IDao<Employee, Long>{
 
-    Employee findUser(String login, String password);
+    Employee login(String login, String password);
     List<Employee> findAllActive();
 
 }

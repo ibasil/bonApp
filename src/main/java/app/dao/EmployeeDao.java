@@ -13,7 +13,7 @@ public class EmployeeDao extends Dao<Employee, Long> implements IEmployeeDao {
         super(Employee.class);
     }
 
-    public Employee findUser(String login, String password) {
+    public Employee login(String login, String password) {
         Employee user = null;
         try {
             TypedQuery<Employee> query = getEntityManager()
