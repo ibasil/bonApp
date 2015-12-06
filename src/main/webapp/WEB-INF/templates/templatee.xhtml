@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+    <title><ui:insert name="title">Default title</ui:insert></title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body style="padding-top: 50px; padding-bottom: 20px;">
+    <ui:debug hotkey="x"
+              rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
+
+    <div style="border-width: 1px" id="header">
+        <ui:insert name="header">
+            <b:container>
+                <b:navBar brand="BonAppetit"  brandHref="index.xhtml" inverse="true" fixed="top">
+                    <b:navbarLinks pull="right">
+                        <b:navLink value="Sign Out" outcome="login" iconAwesome="sign-out"></b:navLink>
+                    </b:navbarLinks>
+                </b:navBar>
+            </b:container>
+
+
+            <ui:include src="header.xhtml" />
+        </ui:insert>
+    </div>
+    <br/>
+
+    <div id="content">
+        <ui:insert name="content">
+            Content area.  See comments below this line in the source.
+            <div style="border-width: 1px">
+                <ui:include src="content.xhtml" />
+            </div>
+        </ui:insert>
+    </div>
+
+    <div id="footer">
+        <ui:insert name="footer">
+            Copyright <h:link value="Bon Appetit&#8482;" outcome="about"></h:link>  2015. All rights Reserved.
+            <ui:include src="footer.xhtml" />
+        </ui:insert>
+    </div>
+
+</h:body>
+
+</html>
