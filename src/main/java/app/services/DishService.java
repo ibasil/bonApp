@@ -1,49 +1,19 @@
 package app.services;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-import org.springframework.transaction.annotation.Transactional;
-
-import app.dao.IDishDao;
 import app.dao.ResultDS;
 import app.entities.Dish;
 
-@Named
-public class DishService implements IDishService, Serializable {
+import java.util.List;
 
-    @Inject
-    private IDishDao dishDao;
+public interface DishService {
 
-    @Transactional
-    public void create(Dish dish) {
-        dishDao.create(dish);
-    }
+    void create(Dish dish);
+    void update(Dish dish);
+    Dish findById(Long id);
 
-    @Transactional
-    public void update(Dish dish) {
-        dishDao.update(dish);
-    }
+    List<Dish> findAll();
+    List<Dish> findAllActive();
+    List<Dish> findAllActive(Long categoryID);
+    List<ResultDS> getDishStatusList(Long orderId);
 
-    public Dish findById(Long id) {
-        return dishDao.findById(id);
-    }
-
-    public List<Dish> findAll() {
-        return dishDao.findAll();
-    }
-
-    public List<Dish> findAllActive(Long categoryID) {
-        return dishDao.findAllActive(categoryID);
-    }
-
-    public List<ResultDS> getDishStatusList(Long orderId) {
-        return dishDao.getDishStatusList(orderId);
-    }
-
-    public List<Dish> findAllActive() {
-        return dishDao.findAllActive();
-    }
 }

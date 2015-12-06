@@ -1,47 +1,15 @@
 package app.services;
 
-import java.io.Serializable;
+import app.entities.Category;
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+public interface CategoryService {
 
-import app.dao.ICategoryDao;
-import app.entities.Category;
-import org.springframework.transaction.annotation.Transactional;
+    Category create(Category category);
+    Category update(Category category);
+    Category findByName(String name);
+    Category findById(Long id);
 
-
-@Named
-public class CategoryService implements ICategoryService, Serializable {
-
-    @Inject
-    private ICategoryDao categoryDao;
-
-    public List<Category> findAllActive() {
-        return categoryDao.findAllActive();
-    }
-
-    public Category findByName(String name) {
-        return categoryDao.findByName(name);
-    }
-
-    @Transactional
-    public Category create(Category category) {
-        categoryDao.create(category);
-        return category;
-    }
-
-    @Transactional
-    public Category update(Category category) {
-        categoryDao.update(category);
-        return category;
-    }
-
-    public Category findById(Long id) {
-        return categoryDao.findById(id);
-    }
-
-    public List<Category> findAll() {
-        return categoryDao.findAll();
-    }
+    List<Category> findAllActive();
+    List<Category> findAll();
 }
